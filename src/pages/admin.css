@@ -1,0 +1,64 @@
+body:has(.admin-shell) { background: #1c1d20; }
+.admin-shell { min-height: 100dvh; padding: max(22px, env(safe-area-inset-top)) 16px max(40px, env(safe-area-inset-bottom)); color: #f7f7f5; background: #1c1d20; font-family: inherit; }
+.admin-shell * { box-sizing: border-box; }
+.admin-shell h1,.admin-shell h2,.admin-shell h3,.admin-shell p { margin-top: 0; }
+.admin-shell h1 { font-size: clamp(32px, 7vw, 54px); letter-spacing: -.06em; margin-bottom: 8px; }
+.admin-shell h2 { font-size: 22px; letter-spacing: -.04em; margin-bottom: 16px; }
+.admin-shell h3 { font-size: 16px; }
+.admin-shell p { line-height: 1.55; }
+.admin-shell a { color: #aab5ff; overflow-wrap: anywhere; }
+.admin-kicker { color: #aab5ff; font-size: 10px; letter-spacing: .15em; font-weight: 700; }
+.admin-top { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; max-width:1400px; margin:0 auto 28px; padding-top:20px; }
+.admin-top p:last-child { color:rgba(247,247,245,.58); font-size:12px; margin:0; overflow-wrap:anywhere; }
+.admin-tabs { display:flex; gap:7px; overflow-x:auto; padding:8px 0 16px; margin:0 auto 12px; max-width:1400px; scrollbar-width:thin; position:sticky; top:0; z-index:5; background:#1c1d20; }
+.admin-tabs button { flex:0 0 auto; border:1px solid #424348; border-radius:999px; padding:10px 14px; color:#f7f7f5; background:transparent; font:inherit; font-size:12px; }
+.admin-tabs button.active { background:#f7f7f5; color:#1c1d20; border-color:#f7f7f5; }
+.admin-panel,.admin-login { width:100%; max-width:1400px; margin:0 auto 16px; padding:18px; border:1px solid #414247; border-radius:16px; background:#232428; }
+.admin-login { max-width:440px; margin:10vh auto 0; padding:24px; }
+.admin-login>p:not(.admin-kicker) { color:rgba(247,247,245,.65); font-size:13px; }
+.admin-field { display:flex; min-width:0; flex-direction:column; gap:7px; margin:0 0 14px; }
+.admin-field>span { font-size:12px; color:rgba(247,247,245,.7); }
+.admin-field input,.admin-field textarea,.admin-field select { width:100%; min-width:0; padding:12px; border:1px solid #48494f; border-radius:9px; background:#191a1d; color:#f7f7f5; font:inherit; font-size:14px; }
+.admin-field textarea { resize:vertical; }
+.admin-field input:focus-visible,.admin-field textarea:focus-visible,.admin-field select:focus-visible,.admin-button:focus-visible,.admin-tabs button:focus-visible { outline:2px solid #aab5ff; outline-offset:2px; }
+.admin-button { min-height:40px; border:1px solid #4a4b51; border-radius:9px; padding:9px 13px; color:#f7f7f5; background:#303136; font:inherit; font-size:12px; font-weight:600; cursor:pointer; }
+.admin-button:disabled { opacity:.55; cursor:wait; }
+.admin-primary { background:#f7f7f5; color:#1c1d20; border-color:#f7f7f5; }
+.admin-danger-text,.admin-text-button { border:0; padding:8px; background:transparent; color:#ffaaa5; font:inherit; font-size:12px; cursor:pointer; }
+.admin-text-button { color:#bfc0c7; }
+.admin-section-title { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; }
+.admin-section-title h2 { margin:0; }
+.admin-layout { display:grid; grid-template-columns:minmax(0,1fr); gap:14px; max-width:1400px; margin:auto; }
+.admin-list-row { display:flex; align-items:center; gap:8px; padding:12px 0; border-top:1px solid #3d3e43; }
+.admin-row-main { display:flex; flex:1; min-width:0; flex-direction:column; align-items:flex-start; gap:4px; border:0; padding:0; background:none; color:#f7f7f5; text-align:left; font:inherit; cursor:pointer; overflow-wrap:anywhere; }
+.admin-row-main strong { font-size:13px; overflow-wrap:anywhere; }
+.admin-row-main small,.admin-muted { color:rgba(247,247,245,.55); font-size:11px; overflow-wrap:anywhere; }
+.admin-fields { display:grid; grid-template-columns:minmax(0,1fr); gap:0 12px; }
+.admin-check { display:flex; align-items:center; gap:9px; margin:0 0 14px; font-size:13px; }
+.admin-check input { width:18px; height:18px; accent-color:#aab5ff; }
+.admin-upload-block,.admin-editor-card,.admin-new-content { margin-top:22px; padding-top:18px; border-top:1px solid #414247; }
+.admin-upload-block input[type=file] { display:block; max-width:100%; font-size:12px; margin:10px 0; }
+.admin-content-group { padding:13px 0; border-top:1px solid #414247; }
+.admin-content-group summary { cursor:pointer; font-weight:700; padding:6px 0 12px; }
+.admin-content-group summary small { color:rgba(247,247,245,.5); font-weight:400; margin-left:8px; }
+.admin-content-row { display:grid; grid-template-columns:minmax(0,1fr); gap:8px; padding:10px 0; border-top:1px solid #35363b; }
+.admin-content-row .admin-field { margin:0; }
+.admin-message { padding:16px 0; border-top:1px solid #414247; }
+.admin-message.is-read { opacity:.65; }
+.admin-message p { margin-bottom:7px; font-size:13px; }
+.admin-message-body { white-space:pre-wrap; overflow-wrap:anywhere; }
+.admin-actions { display:flex; flex-wrap:wrap; gap:8px; }
+.admin-error,.admin-notice { max-width:1400px; margin:0 auto 14px; padding:12px 14px; border-radius:9px; font-size:13px; overflow-wrap:anywhere; }
+.admin-error { color:#ffd2ce; background:#532d30; }
+.admin-notice { color:#d5ffe0; background:#23402d; }
+.admin-loading { max-width:1400px; margin:0 auto 12px; color:#bfc0c7; font-size:12px; }
+@media(min-width:800px) { .admin-shell { padding-left:clamp(24px,4vw,64px); padding-right:clamp(24px,4vw,64px); } .admin-layout { grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr); align-items:start; } .admin-layout>.admin-panel:first-child { position:sticky; top:76px; max-height:calc(100dvh - 100px); overflow:auto; } .admin-fields { grid-template-columns:repeat(2,minmax(0,1fr)); } .admin-fields .admin-field:has(textarea) { grid-column:1/-1; } .admin-content-row { grid-template-columns:minmax(0,1fr) auto; align-items:end; } }
+@media(prefers-reduced-motion:reduce) { .admin-shell * { scroll-behavior:auto !important; animation:none !important; transition:none !important; } }
+
+.admin-progress { display:block; width:100%; max-width:1400px; height:5px; margin:0 auto 14px; accent-color:#aab5ff; }
+
+
+.admin-about-upload { padding:22px; margin:18px 0 24px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.025); }
+.admin-about-upload h3 { margin:0 0 8px; font-size:16px; }
+.admin-about-preview { display:block; width:min(100%,320px); max-height:380px; object-fit:cover; margin:14px 0; aspect-ratio:4/5; }
+.admin-about-upload .admin-field { margin:16px 0; }
