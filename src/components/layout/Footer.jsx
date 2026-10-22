@@ -7,9 +7,12 @@ import { useContent } from '../../context/ContentProvider';
 import { supabase } from '../../lib/supabase';
 
 /**
- * GLOBAL FOOTER with the curved divider.
- * The curve starts deep as the footer approaches, then flattens as the footer enters the viewport.
- * ScrollTrigger scrub keeps the motion reversible when scrolling in either direction.
+ * GLOBAL FOOTER with the reversible "sagging page" curve.
+ *
+ * The page colour hangs over the footer as a half-ellipse (.footer-curve). It is deepest while the
+ * footer is still far below the viewport and flattens into a straight edge as the footer settles in.
+ * A single scrubbed timeline drives it, so scrolling back up replays the curve in reverse.
+ * Only transform / opacity are animated (compositor-friendly, no layout work on scroll).
  */
 export function Footer() {
   const { pathname } = useLocation();
@@ -22,6 +25,7 @@ export function Footer() {
   const SOCIAL_LINKS = { github: contentValue('social.github', 'https://github.com/'), instagram: contentValue('social.instagram', 'https://www.instagram.com/'), linkedin: contentValue('social.linkedin', 'https://www.linkedin.com/') };
   const footerRef = useRef(null);
   const curveRef = useRef(null);
+  const contentRef = useRef(null);
   // Keep the same footer silhouette and light aperture on every route.
   const cap = 'light';
 
@@ -33,21 +37,45 @@ export function Footer() {
   }, []);
 
   useEffect(() => {
+    const footer = footerRef.current;
+    const curve = curveRef.current;
+    const content = contentRef.current;
+    if (!footer || !curve || !content) return undefined;
+
     const mm = gsap.matchMedia();
     mm.add({ motion: MQ.motion, reduce: MQ.reduced, mobile: MQ.mobile }, (context) => {
       const { reduce, mobile } = context.conditions;
       if (reduce) return;
-      gsap.fromTo(curveRef.current, { scaleY: mobile ? 1.12 : 1.28 }, {
-        scaleY: mobile ? 0.18 : 0.12,
-        ease: 'none',
+
+      const orb = content.querySelector('.home-footer-orb');
+      const lines = content.querySelectorAll('.home-footer-title-line');
+
+      // Flat edge must be reachable even when the footer is shorter than the viewport:
+      // the end line is clamped to the lowest position the footer top can actually reach.
+      const end = () => {
+        const vh = window.innerHeight;
+        const reachable = vh - footer.offsetHeight + 2;
+        return `top ${Math.round(Math.max(vh * (mobile ? 0.3 : 0.22), reachable))}px`;
+      };
+
+      const tl = gsap.timeline({
+        defaults: { ease: 'none' },
         scrollTrigger: {
-          trigger: footerRef.current,
+          trigger: footer,
           start: 'top bottom',
-          end: 'top 68%',
-          scrub: mobile ? 0.35 : 0.65,
+          end,
+          scrub: mobile ? 0.4 : 0.7,
           invalidateOnRefresh: true,
         },
       });
+
+      // 1. The curve flattens: scaleY 1 -> 0 from the top edge of the footer.
+      tl.fromTo(curve, { scaleY: 1 }, { scaleY: 0, ease: 'power2.out' }, 0)
+        // 2. Content rises out from beneath the curve and fades in.
+        .fromTo(content, { yPercent: mobile ? 5 : 9, opacity: 0.2 }, { yPercent: 0, opacity: 1, ease: 'power2.out' }, 0)
+        // 3. Headline lines and the orb settle with a slight stagger.
+        .fromTo(lines, { yPercent: 28 }, { yPercent: 0, stagger: 0.08, ease: 'power3.out' }, 0.05);
+      if (orb) tl.fromTo(orb, { scale: 0.72 }, { scale: 1, ease: 'power3.out' }, 0.2);
     });
     return () => mm.revert();
   }, [pathname, version]);
@@ -61,7 +89,7 @@ export function Footer() {
     <footer ref={footerRef} className="footer footer-rich" data-cap={cap}>
       <div ref={curveRef} className="footer-curve" aria-hidden="true" />
       {true ? (
-        <div className="home-footer-content">
+        <div ref={contentRef} className="home-footer-content">
           <div className="home-footer-cta-row">
             <TLink to="/contact" className="home-footer-heading" aria-label={contentValue('footer.cta_aria', 'Let’s work together')}>
               <span className="home-footer-title-line"><img src={portraitSrc} alt="" className="home-footer-avatar" /><span>{contentValue('footer.cta_line_one', 'Let’s work')}</span></span>
