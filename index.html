@@ -2,45 +2,57 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b0b0d" />
-    <title>Kyyinfinite® — AI &amp; Python Student Developer</title>
-    <meta
-      name="description"
-      content="Kyyinfinite® — portfolio of Ripki Dwi Putra, showcasing projects in AI, Python development, software engineering, and creative digital experiences."
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#1c1d20" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://www.kyyinfinite.my.id/" />
-
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" as="image" href="/og-image.jpg" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Kyyinfinite®" />
-    <meta property="og:title" content="Kyyinfinite® — AI &amp; Python Student Developer" />
-    <meta
-      property="og:description"
-      content="Explore my portfolio, software projects, AI experiments, and creative digital experiences."
-    />
     <meta property="og:url" content="https://www.kyyinfinite.my.id/" />
+    <meta property="og:site_name" content="Kyyinfinite" />
+    <meta property="og:title" content="Kyyinfinite® — AI &amp; Python Student Developer" />
+    <meta property="og:description" content="Ripki Dwi Putra — exploring AI architecture, Python development, and creative software." />
     <meta property="og:image" content="https://www.kyyinfinite.my.id/og-image.jpg" />
-    <meta property="og:image:alt" content="Kyyinfinite portfolio preview" />
-
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Kyyinfinite — AI and Python student developer" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Kyyinfinite® — AI &amp; Python Student Developer" />
-    <meta
-      name="twitter:description"
-      content="AI, Python development, and creative software projects."
-    />
+    <meta name="twitter:description" content="Ripki Dwi Putra — exploring AI architecture, Python development, and creative software." />
     <meta name="twitter:image" content="https://www.kyyinfinite.my.id/og-image.jpg" />
-
-    <meta name="author" content="Kyyinfinite" />
+    <meta name="description" content="Kyyinfinite — Ripki Dwi Putra, high school student exploring AI architecture and Python development." />
+    <meta name="author" content="Ripki Dwi Putra" />
+    <meta name="keywords" content="Kyyinfinite, Ripki Dwi Putra, AI developer, Python developer, student developer, portfolio" />
+    <meta name="twitter:url" content="https://www.kyyinfinite.my.id/" />
+    <title>Kyyinfinite® — AI &amp; Python Student Developer</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ripki Dwi Putra",
+        "alternateName": "Kyyinfinite",
+        "url": "https://www.kyyinfinite.my.id/",
+        "jobTitle": "AI & Python Student Developer",
+        "image": "https://www.kyyinfinite.my.id/og-image.jpg",
+        "knowsAbout": ["Artificial Intelligence", "Python", "Software Development"]
+      }
+    </script>
+    <script>
+      // First-visit intro: cover the page before first paint so there is no flash of content.
+      // The flag lives in sessionStorage, so internal navigation never replays the greeting.
+      (function () {
+        try {
+          if (!sessionStorage.getItem('ky-intro-seen') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('is-intro');
+          }
+        } catch (e) { /* storage blocked: skip the intro */ }
+      })();
+    </script>
   </head>
   <body>
-    <main>
-      <h1>Kyyinfinite®</h1>
-      <p>AI &amp; Python Student Developer</p>
-      <p>
-        This is an SEO-ready HTML entry template. Merge its metadata into your
-        existing portfolio if you want to preserve your current website design.
-      </p>
-    </main>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
