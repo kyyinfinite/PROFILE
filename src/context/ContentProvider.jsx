@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { projects as defaultProjects } from '../data/projects';
+import { DEFAULT_AWARDS } from '../data/awards';
 import { CONTACT_EMAIL, SOCIAL_LINKS, SKILLS, EXPERIENCE, NAV_LINKS } from '../data/site';
 import { supabase } from '../lib/supabase';
 
@@ -40,6 +41,8 @@ const defaults = {
   focusAreas: [],
   milestones: [],
   faqs: [],
+  gallery: [],
+  awards: DEFAULT_AWARDS,
 };
 
 function readCache() {
@@ -87,9 +90,12 @@ async function fetchPublicContent() {
     supabase.from('focus_areas').select('*').eq('visible', true).order('sort_order'),
     supabase.from('milestones').select('*').eq('visible', true).order('sort_order'),
     supabase.from('faqs').select('*').eq('visible', true).order('sort_order'),
+    // Gallery & awards are optional: a missing table (SQL not run yet) must never break the rest of the site.
+    supabase.from('gallery_items').select('*').eq('visible', true).order('sort_order').order('created_at', { ascending: false }),
+    supabase.from('awards').select('*').eq('visible', true).order('sort_order'),
   ]));
-  const [contentRes, projectsRes, skillsRes, experienceRes, focusRes, milestonesRes, faqsRes] = queries;
-  const anyError = queries.find((result) => result.error);
+  const [contentRes, projectsRes, skillsRes, experienceRes, focusRes, milestonesRes, faqsRes, galleryRes, awardsRes] = queries;
+  const anyError = queries.slice(0, 7).find((result) => result.error);
   if (anyError) throw anyError.error;
   const content = { ...DEFAULT_CONTENT };
   for (const row of contentRes.data || []) content[row.key] = row.value;
@@ -101,6 +107,9 @@ async function fetchPublicContent() {
     focusAreas: focusRes.data || [],
     milestones: milestonesRes.data || [],
     faqs: faqsRes.data || [],
+    gallery: galleryRes.error ? [] : (galleryRes.data || []).map((row) => ({ ...row, image: storageUrl(row.image_path) })),
+    // Keep the static CV list when the table is missing or still empty.
+    ...(!awardsRes.error && (awardsRes.data || []).length ? { awards: awardsRes.data.map((row) => ({ ...row, image: storageUrl(row.image_path) })) } : {}),
   };
 }
 
@@ -151,4 +160,6 @@ export const useNavLinks = () => { const { projects, contentValue } = useContent
 export const useSiteContent = () => useContent().content;
 export const useSkills = () => useContent().skills;
 export const useExperience = () => useContent().experience;
+export const useGallery = () => useContent().gallery;
+export const useAwards = () => useContent().awards;
 export const useFocusAreas = () => useContent().focusAreas;

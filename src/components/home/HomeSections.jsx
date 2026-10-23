@@ -6,12 +6,13 @@ import { Reveal, TLink, MagneticLink, onPageReady } from '../motion/Motion';
 import { ProjectCard } from '../projects/ProjectComponents';
 import { useContent } from '../../context/ContentProvider';
 import { RichText } from '../ui/RichText';
+import { JOURNEY } from '../../data/journey';
 
 function HeroSection() {
   const { contentValue } = useContent();
   const heroName = contentValue('home.hero.name', 'Kyyinfinite');
-  const heroRole = contentValue('home.hero.role', 'Student\nAI & Python');
-  const heroLocation = contentValue('home.hero.location', 'Indonesia');
+  const heroRole = contentValue('home.hero.role', 'Student & leader\nAI & Python');
+  const heroLocation = contentValue('home.hero.location', 'Garut, Indonesia');
   const heroRef = useRef(null);
   const imageRef = useRef(null);
   const nameRef = useRef(null);
@@ -56,11 +57,11 @@ function HeroSection() {
       </div>
       <div className="home-hero-shade" aria-hidden="true" />
 
-      <div className="hero-location" aria-label="Based in Indonesia, working worldwide">
+      <div className="hero-location" aria-label="Based in Garut, Indonesia">
         <div className="hero-location-copy">
           <span>{contentValue('home.hero.based_label', 'Based in')}</span>
           <strong>{heroLocation}</strong>
-          <span>{contentValue('home.hero.worldwide', 'Working worldwide')}</span>
+          <span>{contentValue('home.hero.worldwide', 'SMAN 10 Garut')}</span>
         </div>
         <span className="hero-location-icon"><Globe2 strokeWidth={1.2} /></span>
       </div>
@@ -110,13 +111,38 @@ function IntroSection() {
 
   return (
     <section id="intro" className="intro home-intro section-pad" ref={sectionRef} aria-labelledby="home-intro-title">
-      <p className="eyebrow home-intro-eyebrow">{contentValue('home.intro.eyebrow', 'STUDENT · AI ARCHITECTURE · PYTHON')}</p>
+      <p className="eyebrow home-intro-eyebrow">{contentValue('home.intro.eyebrow', 'STUDENT · ORGANIZER · AI & PYTHON')}</p>
       <h2 id="home-intro-title" ref={headlineRef} className="home-intro-headline">
-        <RichText value={contentValue('home.intro.heading', 'A high school student exploring AI architecture and building with Python.')} />
+        <RichText value={contentValue('home.intro.heading', 'A high school student who leads, competes, and builds with AI and Python.')} />
       </h2>
       <div className="intro-bottom" ref={copyRef}>
-        <p className="intro-support">{contentValue('home.intro.copy', 'I’m deepening my understanding of intelligent systems through hands-on experiments, Python projects, and continuous learning—turning curiosity into practical skills, one step at a time.')}</p>
+        <p className="intro-support">{contentValue('home.intro.copy', 'Active in Pramuka and school organizations, and exploring AI architecture and Python on the side. Berintegritas, berprestasi, dan bersiap memberi kontribusi terbaik.')}</p>
         <MagneticLink className="about-orb" to="/about" aria-label="About me">{contentValue('home.intro.about_label', 'About me')} <ArrowUpRight size={18} /></MagneticLink>
+      </div>
+    </section>
+  );
+}
+
+function JourneyHighlightsSection() {
+  const featured = JOURNEY.filter((item) => item.featured);
+  return (
+    <section id="journey" className="journey-highlights section-pad camera-scene" aria-labelledby="journey-highlights-title">
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">ORGANISASI · PRESTASI · KEGIATAN</p>
+          <h2 id="journey-highlights-title">Perjalanan<span className="period">.</span></h2>
+        </div>
+        <TLink className="text-link" to="/journey">Lihat semua <ArrowUpRight size={16} /></TLink>
+      </div>
+      <div className="journey-hl-list">
+        {featured.map((item, index) => (
+          <Reveal key={item.id} className="journey-hl-row" delay={(index % 2) * 0.05}>
+            <span className="eyebrow">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{item.title}</h3>
+            <p>{item.place}</p>
+            <span className="journey-hl-cross" aria-hidden="true">↗</span>
+          </Reveal>
+        ))}
       </div>
     </section>
   );
@@ -130,7 +156,7 @@ function SelectedWorkSection() {
   return (
     <section id="selected-work" className="work-section section-pad camera-scene">
       <div className="section-heading">
-        <h2>{contentValue('home.work.heading', 'Selected work')}<span className="period">.</span></h2>
+        <h2>{contentValue('home.work.heading', 'Personal projects')}<span className="period">.</span></h2>
         <TLink className="text-link" to="/work">{contentValue('home.work.link', 'All projects')} <ArrowUpRight size={16} /></TLink>
       </div>
       <div className="project-grid">
@@ -191,4 +217,4 @@ function FaqSection() {
   </section>;
 }
 
-export { HeroSection, IntroSection, SelectedWorkSection, ManifestoSection, ProcessSection, FaqSection };
+export { HeroSection, IntroSection, JourneyHighlightsSection, SelectedWorkSection, ManifestoSection, ProcessSection, FaqSection };

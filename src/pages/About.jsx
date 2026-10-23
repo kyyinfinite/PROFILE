@@ -11,7 +11,7 @@ const FALLBACK_MILESTONES = [
   ['Silat achievements', 'First-place finishes in silat competitions at international, national, provincial, and district levels.'],
   ['Google Jagoan Coding', 'Top 50 finalists in the Google Jagoan Coding program during SMP.'],
   ['Pramuka Garuda', 'Reached the highest scouting level during SMP.'],
-  ['Leadership & speaking', 'School and district-level student organizations, and a leadership webinar talk.'],
+  ['Most active at SMAN 10 Garut', 'Most active student at MPLS and most active participant at the Masa Tamu camp.'],
 ];
 
 function storageImage(path) {
@@ -31,9 +31,9 @@ export function About() {
   return (
     <Page className="about-page about-editorial">
       <PageHeading
-        eyebrow={contentValue('about.eyebrow', 'A PERSON BEHIND THE PROJECTS')}
+        eyebrow={contentValue('about.eyebrow', 'STUDENT · ORGANIZER · BUILDER')}
         title={<RichText value={contentValue('about.heading', 'Curious by\n*nature*')} />}
-        intro={contentValue('about.intro', 'I’m Ripki Dwi Putra, a high school student exploring AI architecture, Python development, and the ideas behind intelligent systems.')}
+        intro={contentValue('about.intro', 'I’m Ripki Dwi Putra, a high school student at SMAN 10 Garut. I grew up in Pramuka, Paskibra, and silat, and I spend my free time exploring AI architecture and Python.')}
       />
 
       <section className="about-feature about-editorial-feature">
@@ -48,15 +48,15 @@ export function About() {
         <div className="about-story about-editorial-story">
           <Reveal>
             <p className="eyebrow">{contentValue('about.story.eyebrow', 'ALWAYS EXPLORING')}</p>
-            <h2><RichText value={contentValue('about.story', 'I believe progress comes from staying curious, learning the fundamentals, and turning ideas into *something real*.')} /></h2>
+            <h2><RichText value={contentValue('about.story', 'I believe good leaders keep learning, work well with a team, and turn ideas into *something real*.')} /></h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="about-secondary-copy">{contentValue('about.secondary', 'Right now, I’m learning by building small Python projects, studying how AI systems are structured, and testing ideas one experiment at a time. I’m still at the beginning—and that is what makes the process exciting.')}</p>
+            <p className="about-secondary-copy">{contentValue('about.secondary', 'Outside organizations, I build small Python projects and study how AI systems are structured. My hobbies are sports, writing, and reading.')}</p>
           </Reveal>
           <Reveal delay={0.12}>
             <div className="about-facts">
-              <div><span className="eyebrow">{contentValue('about.fact1.label', 'CURRENTLY')}</span><p>{contentValue('about.fact1.copy', 'A high school student exploring AI architecture and Python development.')}</p></div>
-              <div><span className="eyebrow">{contentValue('about.fact2.label', 'MY APPROACH')}</span><p>{contentValue('about.fact2.copy', 'Stay curious, build patiently, and learn from what does not work.')}</p></div>
+              <div><span className="eyebrow">{contentValue('about.fact1.label', 'CURRENTLY')}</span><p>{contentValue('about.fact1.copy', 'Grade X at SMAN 10 Garut, active in school activities and learning AI and Python.')}</p></div>
+              <div><span className="eyebrow">{contentValue('about.fact2.label', 'MY APPROACH')}</span><p>{contentValue('about.fact2.copy', 'Integrity, hard work, and the will to keep growing.')}</p></div>
             </div>
           </Reveal>
         </div>
@@ -100,7 +100,7 @@ export function About() {
       <Reveal className="about-end-note">
         <p className="eyebrow">{contentValue('about.cta.eyebrow', 'KEEP IN TOUCH')}</p>
         <h2>{contentValue('about.cta.heading', 'I’m learning, building, and always open to a good conversation.')}</h2>
-        <a className="about-contact-link" href="/contact">Let’s talk <ArrowUpRight size={18} /></a>
+        <a className="about-contact-link" href="/journey">See my journey <ArrowUpRight size={18} /></a>
       </Reveal>
       <FaqSection />
     </Page>

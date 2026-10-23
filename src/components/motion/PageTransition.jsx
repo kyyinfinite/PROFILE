@@ -31,7 +31,7 @@ const SHAPE = {
   covered: `ellipse(${R} at 50% 100%)`,
   above: `ellipse(${R} at 50% -150%)`,
 };
-const LABELS = { '/': 'Home', '/work': 'Projects', '/about': 'About', '/services': 'Focus', '/contact': 'Contact' };
+const LABELS = { '/': 'Home', '/work': 'Projects', '/about': 'About', '/journey': 'Journey', '/gallery': 'Gallery', '/awards': 'Awards', '/contact': 'Contact' };
 
 const labelFor = (path) => LABELS[path] || (path.startsWith('/work/') ? 'Project' : '—');
 

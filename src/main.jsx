@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { PageTransition, ScrollScenes, CursorFollower } from './components/motion/Motion';
 import { Header, Footer } from './components/layout/Layout';
-import { Home, Work, Detail, About, Contact, Services, NotFound } from './pages/PortfolioPages';
+import { Home, Work, Detail, About, Contact, Journey, Gallery, Awards, NotFound } from './pages/PortfolioPages';
 import { ContentProvider } from './context/ContentProvider';
 import './styles.css';
 import './styles/system.css';
@@ -31,7 +31,10 @@ function RoutedApp() {
               <Route path="/work" element={<Work />} />
               <Route path="/work/:slug" element={<Detail />} />
               <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
+              <Route path="/journey" element={<Journey />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/awards" element={<Awards />} />
+              <Route path="/services" element={<Navigate to="/journey" replace />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

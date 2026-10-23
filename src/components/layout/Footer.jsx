@@ -91,15 +91,15 @@ export function Footer() {
       {true ? (
         <div ref={contentRef} className="home-footer-content">
           <div className="home-footer-cta-row">
-            <TLink to="/contact" className="home-footer-heading" aria-label={contentValue('footer.cta_aria', 'Let’s work together')}>
-              <span className="home-footer-title-line"><img src={portraitSrc} alt="" className="home-footer-avatar" /><span>{contentValue('footer.cta_line_one', 'Let’s work')}</span></span>
-              <span className="home-footer-title-line"><span>{contentValue('footer.cta_line_two', 'together')}</span></span>
+            <TLink to="/contact" className="home-footer-heading" aria-label={contentValue('footer.cta_aria', 'Let’s connect')}>
+              <span className="home-footer-title-line"><img src={portraitSrc} alt="" className="home-footer-avatar" /><span>{contentValue('footer.cta_line_one', 'Let’s')}</span></span>
+              <span className="home-footer-title-line"><span>{contentValue('footer.cta_line_two', 'connect')}</span></span>
             </TLink>
             <span className="home-footer-diagonal" aria-hidden="true">↙</span>
           </div>
           <div className="home-footer-contact-band">
             <span className="home-footer-rule" aria-hidden="true" />
-            <TLink to="/contact" className="home-footer-orb">{contentValue('footer.contact_button', 'Get in touch')} <ArrowUpRight size={18} aria-hidden="true" /></TLink>
+            <TLink to="/contact" className="home-footer-orb">{contentValue('footer.contact_button', 'Say hello')} <ArrowUpRight size={18} aria-hidden="true" /></TLink>
           </div>
           <div className="home-footer-contact-details">
             <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
