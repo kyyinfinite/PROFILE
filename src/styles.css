@@ -768,8 +768,8 @@ button:focus-visible, a:focus-visible { outline-color: #8b9cff; }
   .home-hero-image,
   .home-hero-shade { height: 100%; }
   .home-hero-image {
-    object-position: 66% center;
-    transform-origin: 68% 48%;
+    object-position: 74% center;
+    transform-origin: 74% 48%;
   }
   .home-hero-intro {
     top: 25%;
