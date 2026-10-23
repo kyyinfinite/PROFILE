@@ -43,7 +43,7 @@ export function GalleryAdmin() {
         mark('mengunggah…');
         const { path, width, height } = await uploadImage(file, 'gallery');
         const { error: insertError } = await supabase.from('gallery_items').insert({
-          title: file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ').slice(0, 160),
+          title: /^(img|dsc|pxl|wa|vid|screenshot|photo)[\s_-]*\d/i.test(file.name) ? '' : file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ').slice(0, 160),
           category: category.trim() || 'Kegiatan', image_path: path, width, height, sort_order: order,
         });
         if (insertError) { await removeObject(path); throw insertError; }
